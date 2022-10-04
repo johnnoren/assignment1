@@ -3,6 +3,7 @@ package greenest;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public class Greenest {
@@ -18,21 +19,24 @@ public class Greenest {
 		guestList.add(new Carnivorous("Meatloaf", new Height(70)));
 		guestList.add(new Palm("Putte", new Height(100)));
 
-		Predicate<String> isGuest = (name) -> guestList.stream().anyMatch(plant -> plant.isNamed(name)); // Polymorfism
+		BiPredicate<Plant, String> isNamed = (plant, name) -> plant.getName()
+																   .equals(name); // Polymorfism (plant.getName)
+
+		Predicate<String> isGuest = (name) -> guestList.stream()
+													   .anyMatch(plant -> isNamed.test(plant, name));
 
 		var userInput = "";
 		while (!isGuest.test(userInput)) {
-			userInput = JOptionPane.showInputDialog(null,"Vilken växt ska få vätska?", null,JOptionPane.PLAIN_MESSAGE);
+			userInput = JOptionPane.showInputDialog(null, "Vilken växt ska få vätska?", null,
+					JOptionPane.PLAIN_MESSAGE);
 			if (!isGuest.test(userInput)) {
-				JOptionPane.showMessageDialog(null, "Namnet finns inte på gästlistan.", null,JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Namnet kunde inte hittas.", null, JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 		final String name = userInput;
 
 		guestList.stream()
-				.filter(plant -> plant.isNamed(name))
-				.forEach(Plant::showFluidRequirement);
-
+				 .filter(plant -> isNamed.test(plant, name))
+				 .forEach(Plant::showFluidRequirement); // Polymorfism
 	}
-
 }

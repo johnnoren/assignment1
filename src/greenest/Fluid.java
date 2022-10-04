@@ -1,9 +1,7 @@
 package greenest;
 
 public enum Fluid {
-	TAPWATER("kranvatten"),
-	MINERALWATER("mineralvatten"),
-	PROTEINDRINK("proteindryck");
+	TAPWATER("kranvatten"), MINERALWATER("mineralvatten"), PROTEINDRINK("proteindryck");
 
 	public final String value;
 

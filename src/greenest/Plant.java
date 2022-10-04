@@ -1,10 +1,16 @@
 package greenest;
 
-public abstract class Plant implements Drinker{
-	protected final String name;
-	protected final Height height;
-	public boolean isNamed(String name) {
-		return this.name.equals(name);
+public abstract class Plant implements Drinker {
+	private final String name; // Inkapsling
+
+	public String getName() { // Inkapsling
+		return name;
+	}
+
+	private final Height height;
+
+	public Height getHeight() {
+		return height;
 	}
 
 	protected Plant(String name, Height height) {

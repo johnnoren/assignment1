@@ -9,6 +9,6 @@ public class Height {
 	}
 
 	public double inMeter() {
-		return centimeter/100.0;
+		return centimeter / 100.0;
 	}
 }

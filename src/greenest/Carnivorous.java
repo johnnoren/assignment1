@@ -13,6 +13,6 @@ public class Carnivorous extends Plant {
 
 	@Override
 	public Double getFluidRequirement() {
-		return 0.1 + (0.2 * height.inMeter());
+		return 0.1 + (0.2 * getHeight().inMeter());
 	}
 }

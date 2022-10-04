@@ -2,8 +2,7 @@ package greenest;
 
 public class Palm extends Plant {
 
-	public
-	Palm(String name, Height height) {
+	public Palm(String name, Height height) {
 		super(name, height);
 	}
 
@@ -14,6 +13,6 @@ public class Palm extends Plant {
 
 	@Override
 	public Double getFluidRequirement() {
-		return 0.5 * height.inMeter();
+		return 0.5 * getHeight().inMeter();
 	}
 }
